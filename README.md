@@ -76,13 +76,13 @@ If all went well, the output of `nvm --version` should look like the following:
 
 <br>
 
-Now that NVM was successfully installed, we can install NodeJS and NPM by simply executing:
+Now that `NVM` was successfully installed, we can install NodeJS and NPM by simply executing:
 
 ```shell
 nvm install node   # this will install the latest version of NodeJS
 ```
 
-Personally, I recommend installing the LTS (*Long Term Support*) version by running
+Personally, I recommend **installing the LTS (*Long Term Support*) version** by running
 
 ```shell
 nvm install node --lts   # Currently, the LTS version corresponds to 12.16.1
@@ -111,23 +111,23 @@ The `Node Version Manager` proves to be really useful specially if you're workin
 nvm use node --version   # just change --version to the one you want to use, e.g., 10.10.0
 ```
 
-For example, to use the latest version of `NodeJS`, it would be as simple as 
+For example, to **use the latest version** of `NodeJS`, it would be as simple as 
 
 ```shell
 nvm use node --latest
 ```
 
-To install a specific node version, just run
+To **install a specific node version**, just run
 ```shell
 nvm install node --version  # just change --version to the one you want to use, e.g., 8.9.1
 ```
 
-To list all installed versions in your system:
+To **list all installed versions in your system**:
 ```shell
 nvm ls
 ```
 
-Finally, to list all available versions on the remote repository:
+Finally, to **list all available versions on the remote repository**:
 ```shell
 nvm ls-remote
 ```

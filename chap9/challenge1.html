@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <title>Challenge 1</title>
+</head>
+
+<body>
+    <!-- 
+        #1: Listing Your Friends with jQuery
+        (And Making Them Smell!)
+        Create an array containing the names of a few friends.
+        Using a for loop, create a p element for each of your friends
+        and add it to the end of the body element using the jQuery
+        append method. Use jQuery to change the h1 element so it says
+        My friends instead of Hello world! . Use the hide method followed
+        by the fadeIn method to fade in each name as it’s provided.
+        Now, modify the p elements you created to add the text
+        smells! after each friend. Hint: If you select the p elements
+        using $("p") , the append method will apply to all the p elements.
+     -->
+    <script src="https://code.jquery.com/jquery-2.1.0.js"></script>
+    
+    <h1>Hello World!</h1>
+
+    <script>
+        var friends = [
+            "Gabriel",
+            "Pedro",
+            "Davi",
+            "Felipe",
+            "Flávio"
+        ];
+
+        for (var i = 0; i < friends.length; i++) {
+            $("body").append('<p>' + friends[i] + "</p>");
+            $("p").hide(0).fadeIn(1000);
+        }
+
+        $("h1").text("My Friends");
+        $("p").append(" smells!");
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Challenge 2</title>
+</head>
+
+<body>
+    <!-- 
+        How could you use fadeOut and fadeIn to cause the heading to
+        flash five times, once a second? How could you do this using
+        a for loop? Try modifying your loop so it fades out and fades
+        in over 1 second the first time, over 2 seconds the second time,
+        over 3 seconds the third time, and so on.
+     -->
+    <script src="https://code.jquery.com/jquery-2.1.0.js"></script>
+    <h1>Hello World!</h1>
+    <script>
+        for (var i = 0; i < 5; i++) {
+            $("h1").fadeOut(i*1000/2).fadeIn(i*1000/2);
+        }
+    </script>
+
+</body>
+
+</html>

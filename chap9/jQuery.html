@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+
+<html>
+    <meta charset='utf-8'>
+    <head>
+        <title>Playing with jQuery</title>
+    </head>
+
+    <body>
+        <h1 id="main-heading">Hello World!</h1>
+        <script src="https://code.jquery.com/jquery-2.1.0.js"></script>
+        <script>
+            var newHeadingText = prompt('Please provide a new heading:');
+            $("#main-heading").text(newHeadingText);
+            $("body").append("<p>This is a paragraph added by jQuery</p>");
+        </script>
+        
+        <p style="font-size:12;text-align:justify">
+            The built-in DOM methods are great, but they’re not very easy
+            to use. Because of this, many developers use a set of tools called
+            jQuery to access and manipulate the DOM tree. jQuery is a
+            JavaScript library—a collection of related tools (mostly func-
+            tions) that gives us, in this case, a simpler way to work with DOM
+            elements.    
+
+            <br>
+            <br>
+
+            To load it into the page, just add &lt;script src="https://code.jquery.com/jquery-2.1.0.js"&gt;&lt;/script&gt;
+        </p>
+
+        <p><strong>The three paragraphs below were added by a loop in jQuery:</strong></p>
+        <script>
+            for (var j = 0; j < 3; j++) {
+                var hobby = prompt("Tell me one of your hobbies!");
+                $("body").append("<p>" + hobby + "</p>");
+            }
+        </script>
+
+        <!-- Animating elements with jquery -->
+        <h2>subtitle</h2>
+        <script>
+            $("h2").text("This text will fade out").fadeOut(3000).fadeIn(1500);
+            $("h1").slideUp(1000).slideDown(1000);  // sliding h1
+        </script>
+        
+    </body>
+</html>

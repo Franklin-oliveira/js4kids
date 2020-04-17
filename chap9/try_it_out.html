@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Try it out!</title>
+</head>
+
+<body>
+    <script src="https://code.jquery.com/jquery-2.1.0.js"></script>
+    <h1>Simple html page for Try it out section.</h1>
+    <p>We'll use jquery to make animations</p>
+
+    <script>
+        // $("h1").fadeIn(2000) // fadeIn don't do anything to an already visible element
+        // $("h1").slideUp(2000).slideDown(1000);  // the <p> element goes up and down
+        
+        // calling fade out and then fade in produces the same output as chaining them
+        // $("h1").fadeOut(2000);
+        // $("h1").fadeIn(1000);
+        
+        // inside the loop it produces an animation (fading in and out)
+        // for (var i = 0; i < 5; i++){
+        //     $("h1").fadeOut(2000);
+        //     $("h1").fadeIn(1000);
+        // }
+
+        // does the same thing as fade In and Out
+        $("h1").hide(1000);  
+        // $("h1").show(1000);
+
+    </script>
+</body>
+    
+</html>

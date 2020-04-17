@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+
+<html>
+    <meta charset='utf-8'>
+    <head>
+        <title>Playing with the DOM</title>
+    </head>
+
+    <body>
+        <h1 id="main-heading">Hello World!</h1>
+        <script>
+            var headingElement = document.getElementById("main-heading");
+            console.log(headingElement);
+            var newHeadingText = prompt("Please provide a new heading:");
+            headingElement.innerHTML = newHeadingText;  
+        </script>
+        
+        <p style="font-size:12">
+            The DOM (Document Object Element) is what allows JavaScript to
+            access the content of a web page. Web
+            browsers use the DOM to keep track of
+            the elements on a page (such as paragraphs, headings, and other HTML
+            elements)
+        </p>
+        <img src="./DOM_tree.png">
+    </body>
+</html>

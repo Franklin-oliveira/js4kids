@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Challenge 1</title>
+    <meta charset="utf-8">
+</head>
+
+<body>
+    <!-- 
+        Modify the previous mousemove program so that instead of
+        following your mouse, the heading will follow just your clicks.
+        Whenever you click the page, the heading should move to the
+        click location.
+     -->
+     
+    <!-- Loading jQuery -->
+    <script src="https://code.jquery.com/jquery-2.1.0.js"></script>
+
+    <h1 id="heading">Hello World!</h1>
+
+    <script>
+        $("html").click(function (event) {
+            $("#heading").offset({
+                left: event.pageX,
+                top: event.pageY
+            });
+        });
+    </script>
+</body>
+
+</html>

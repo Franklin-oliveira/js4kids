@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Interactive Programming</title>
+    <meta charset="utf-8">
+</head>
+
+<body>
+    <!-- Loading jQuery -->
+    <script src="https://code.jquery.com/jquery-2.1.0.js"></script>
+    
+    <h1 id="heading">Hello World!</h1>
+    
+    <script>
+        var clickHandler = function (event) {
+            console.log("Click!" + event.pageX + " " + event.pageY);
+        };
+
+        $("h1").click(clickHandler);
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Challenge 3</title>
+    <meta charset="utf-8">
+</head>
+
+<body>
+    <!-- 
+        Use setInterval to animate an h1 heading element around
+        the page, in a square. It should move 200 pixels to the right,
+        200 pixels down, 200 pixels to the left, 200 pixels up, and
+        then start again. Hint: You’ll need to keep track of your
+        current direction (right, down, left, or up) so that you know
+        whether to increase or decrease the left or top offset of the
+        heading. You’ll also need to change the direction when you
+        reach a corner of the square.
+     -->
+
+    <!-- Loading jQuery -->
+    <script src="https://code.jquery.com/jquery-2.1.0.js"></script>
+    <h1 id="heading">Hello World!</h1>
+    <script>
+        var direction = "right";
+        var offset = 0;
+
+        $("#heading").offset({ left: offset, top: offset });
+
+        var moveHeading = function () {
+            if (direction === "right") {
+                $("#heading").offset({ left: offset });
+                offset++;
+
+                if (offset > 200) {
+                    offset = 0;
+                    direction = "down";
+                }
+            } else if (direction === "down") {
+                $("#heading").offset({ top: offset });
+                offset++;
+
+                if (offset > 200) {
+                    offset = 200;
+                    direction = "left";
+                }
+            } else if (direction === "left") {
+                $("#heading").offset({ left: offset });
+                offset--;
+
+                if (offset === 0) {
+                    offset = 200;
+                    direction = "up";
+                }
+            } else if (direction === "up") {
+                $("#heading").offset({ top: offset });
+                offset--;
+
+                if (offset === 0) {
+                    offset = 0;
+                    direction = "right";
+                }
+            }
+        };
+
+        var intervalId = setInterval(moveHeading, 10);
+
+        // if the user clicks on h1 element, the animation stops
+        $("#heading").click(function () {
+            clearInterval(intervalId);
+        });
+
+    </script>
+</body>
+
+</html>

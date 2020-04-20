@@ -2,15 +2,21 @@
 <html>
 
 <head>
-    <title>Challenge 3</title>
+    <title>Challenge 4</title>
     <meta charset="utf-8">
 </head>
 
 <body>
     <!-- 
-        Building upon Challenge #2, add a click handler to the mov-
-        ing h1 element that cancels the animation. Hint: You can
-        cancel intervals with the clearInterval function.
+        Modify Challenge #3 so that every time a player clicks the
+        heading, instead of stopping, the heading speeds up, making
+        it harder and harder to click. Keep track of the number of
+        times the heading has been clicked and update the heading
+        text so it shows this number. When the player has reached
+        10 clicks, stop the animation and change the text of the
+        heading to “You Win.” Hint: To speed up, you’ll have to
+        cancel the current interval and then start a new one with
+        a shorter interval time.
      -->
 
     <!-- Loading jQuery -->
@@ -19,6 +25,9 @@
     <script>
         var direction = "right";
         var offset = 0;
+        var frameRate = 100;
+        var correctClicks = 0;
+
 
         $("#heading").offset({ left: offset, top: offset });
 
@@ -58,11 +67,21 @@
             }
         };
 
-        var intervalId = setInterval(moveHeading, 10);
+        var intervalId = setInterval(moveHeading, frameRate);
 
         // if the user clicks on h1 element, the animation stops
         $("#heading").click(function () {
             clearInterval(intervalId);
+            correctClicks++;
+
+            if (correctClicks > 6) {
+                $("#heading").text("You win!");
+                clearInterval(intervalId);
+
+            } else {
+                frameRate = frameRate/2
+                intervalId = setInterval(moveHeading, frameRate);
+            }
         });
 
     </script>

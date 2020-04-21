@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+    <!-- Challenge 2 - Adding more messages (hints)...
+        Try adding some extra messages to display to the player
+        (like "Really really cold!" ), and modify the distances to make
+        the game your own.
+
+        Note: modified only the getDistanceHint function (added the last two messages)
+     -->
+
+<head>
+    <title>Find the burried treasure!</title>
+    <meta charset="utf-8">
+</head>
+
+<body>
+    <h1 id="heading">Find the burried treasure!</h1>
+    
+    <img id="map" src="http://nostarch.com/images/treasuremap.png" width="800px" height="800px">
+    
+    <strong><p id="distance" style="color:red;"></p></strong>
+
+    <!-- Importing jQuery -->
+    <script src="https://code.jquery.com/jquery-2.1.0.js"></script>
+    
+    <!-- Game Code -->
+    <script>
+        // window dimensions
+        var width = 800;
+        var height = 800;
+        var clicks = 0;
+
+        var getRandomNumber = function (size) {
+            return Math.floor(Math.random() * size);
+        };
+
+        // treasure position
+        var target = {
+            x: getRandomNumber(width),
+            y: getRandomNumber(height)
+        };
+
+        // calculating distance between click and treasure
+        var getDistance = function(event, target) {
+            var diffX = event.offsetX - target.x;
+            var diffY = event.offsetY - target.y;
+
+            return Math.sqrt( (diffX**2) + (diffY**2) );
+        }
+
+        // gives the player a hint of how close He/She is from the treasure
+        var getDistanceHint = function (distance) {
+            if (distance < 30) {
+                return "Boiling hot!";
+            } else if (distance < 45) {
+                return "Really hot";
+            } else if (distance < 90) {
+                return "Hot";
+            } else if (distance < 125) {
+                return "Warm";
+            } else if (distance < 180) {
+                return "Cold";
+            } else if (distance < 360) {
+                return "Really cold";
+            } else if (distance < 520) {
+                return "Freezing!";
+            } else if (distance < 640) {
+                return "Come on. You're not even trying...";
+            } else {
+                return "You're wasting time...";
+            }
+        }
+
+        // capturing user's click
+        $("#map").click( function (event) {
+            // 1. counting click
+            clicks++; 
+
+            // 2. getting distance from treasure and displaying hint to the player
+            var distance = getDistance(event, target);
+            var distanceHint = getDistanceHint(distance);
+            $("#distance").text(distanceHint);
+
+            // 3. checking if the player won
+            if (distance < 15) {
+                alert("Found the treasure in " + clicks + " clicks!");
+            } 
+        });
+
+    </script>
+</body>
+
+</html>

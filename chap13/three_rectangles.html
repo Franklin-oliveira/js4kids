@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Canvas</title>
+</head>
+
+<body>
+    <canvas id="canvas" width="300" height="150"></canvas>
+
+    <script>
+        var canvas = document.getElementById("canvas");
+        var ctx = canvas.getContext("2d");
+
+        // As example, we'll draw the flag of Germany        
+        ctx.fillRect(0,0,300,50);
+
+        ctx.fillStyle = "Red";  // changing color
+        ctx.fillRect(0,50,300,50);
+
+        ctx.fillStyle = "Yellow";  // changing color
+        ctx.fillRect(0,100,300,50);
+
+    </script>
+</body>
+
+</html>

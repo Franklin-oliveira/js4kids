@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Canvas</title>
+</head>
+
+<body>
+    <canvas id="canvas" width="200" height="300"></canvas>
+
+    <script>
+        var canvas = document.getElementById("canvas");
+        var ctx = canvas.getContext("2d");
+
+        // drawing a robot
+        // head
+        ctx.fillRect(60,20,50,50);
+
+        // neck
+        ctx.fillRect(80,70,10,20);
+
+        // arms
+        ctx.fillRect(10,90,150,10);
+
+        // body
+        ctx.fillRect(45,100,80,80);
+
+        // legs
+        ctx.fillRect(45,180,10,50);
+        ctx.fillRect(115,180,10,50);
+    </script>
+</body>
+
+</html>

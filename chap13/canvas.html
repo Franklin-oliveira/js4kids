@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Canvas</title>
+</head>
+
+<body>
+    <canvas id="canvas" width="200" height="200"></canvas>
+
+    <script>
+        var canvas = document.getElementById("canvas");
+        var ctx = canvas.getContext("2d");
+
+        // ctx.fillRect(0,0,10,10); // drawing rectangle (x, y, width, height)
+
+        // for (var i = 0; i < 8; i++) {
+        //     ctx.fillRect(i*10,i*10,10,10);
+        // }
+        
+        // ctx.fillStyle = "Red";  // changing color
+        // ctx.fillRect(0,0,100,100);
+
+        /*  Note: JavaScript understands more than
+            100 color names, including Green,
+            Blue, Orange, Red, Yellow, Purple,
+            White, Black, Pink, Turquoise, Violet,
+            SkyBlue, PaleGreen, Lime, Fuchsia,
+            DeepPink, Cyan, and Chocolate.
+            You’ll find a full list on the CSS-Tricks
+            website: http://css-tricks.com/snippets/css/named-colors-and-hex-equivalents/.
+        */
+
+        // drawing just the outline of the rectangle
+        // ctx.strokeStyle = "DeepPink";
+        // ctx.lineWidth = 4;
+        // ctx.strokeRect(10,10,100,20);
+        
+        // drawing lines or paths
+        ctx.strokeStyle = "Turquoise";
+        ctx.lineWidth = 4;
+        ctx.beginPath();
+        ctx.moveTo(10,10);
+        ctx.lineTo(60,60);
+        ctx.moveTo(60,10);
+        ctx.lineTo(10,60);
+        ctx.stroke();
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Challenge 1 - Snowman</title>
+</head>
+
+<body>
+    <!-- Challenge 3
+        Using jQuery and the mousemove event, draw a filled circle
+        with a radius of 3 pixels at the mouse position whenever
+        you move your mouse over the canvas. Because this event is
+        triggered by every tiny movement of the mouse, these circles
+        will join into a line as you move the mouse over the canvas.
+        Hint: Refer to Chapter 10 for a reminder of how to respond
+        to mousemove events.
+     -->
+
+    <!-- Loading jQuery -->
+    <script src="https://code.jquery.com/jquery-2.1.0.js"></script>
+
+    <!-- Canvas element -->
+    <canvas id="canvas" width="1200" height="800"></canvas>
+
+    <script>
+        var canvas = document.getElementById("canvas");
+        var ctx = canvas.getContext("2d");
+
+        var circle = function (x, y, radius, fill = false, fillColor = "Black") {
+            ctx.beginPath();
+            ctx.arc(x, y, radius, 0, Math.PI * 2, false);
+
+            if (fill) {
+                ctx.fillStyle = fillColor;
+                ctx.fill();
+            } else {
+                ctx.stroke();
+            }
+        };
+
+        $("html").mousemove(function (event) {
+            var x = event.pageX;
+            var y = event.pageY;
+
+            circle(x, y, 3, fill=true, fillColor="Blue");
+        });
+
+
+    </script>
+</body>
+
+</html>

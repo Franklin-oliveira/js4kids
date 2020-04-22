@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Challenge 1 - Snowman</title>
+</head>
+
+<body>
+    <!-- Challenge 1 
+        Building on your code for drawing a snowman (page 213),
+        write a function that draws a snowman at a specified
+        location, so that calling this . . .
+        drawSnowman(50, 50);
+        would draw a snowman at the point (50, 50).
+     -->
+    <canvas id="canvas" width="1000" height="1000"></canvas>
+
+    <script>
+        var canvas = document.getElementById("canvas");
+        var ctx = canvas.getContext("2d");
+
+        var circle = function (x, y, radius, fill = false, fillColor = "Black") {
+            ctx.beginPath();
+            ctx.arc(x, y, radius, 0, Math.PI * 2, false);
+
+            if (fill) {
+                ctx.fillStyle = fillColor;
+                ctx.fill();
+            } else {
+                ctx.stroke();
+            }
+        };
+
+        var snowman = function (x, y, scale=1) {
+            // drawing a snowman
+            ctx.lineWidth = 4;
+            ctx.strokeStyle = "Black";
+
+            // head
+            circle(x, y-80, 30);
+
+            // nose
+            circle(x, y-75, 5, true, "Orange");
+
+            // eyes
+            circle(x-10, y-85, 5, true);
+            circle(x+10, y-85, 5, true);
+
+            // body
+            circle(x, y, 50);
+
+            // buttons
+            circle(x, y-20, 5, true);
+            circle(x, y, 5, true);
+            circle(x, y+20, 5, true);
+        };
+
+        snowman(500,200);
+
+
+    </script>
+</body>
+
+</html>

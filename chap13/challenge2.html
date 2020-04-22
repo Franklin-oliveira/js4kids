@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Challenge 2 - Drawing Lines</title>
+</head>
+
+<body>
+    <!-- Challenge 2
+        Write a function that will take an array of points like this:
+        var points = [[50, 50], [50, 100], [100, 100], [100, 50], 
+        [50, 50]];
+        drawPoints(points);
+        and draw a line connecting the points. In this example,
+        the function would draw a line from (50, 50) to (50, 100) to
+        (100, 100) to (100, 50) and back to (50, 50).
+        Now use this function to draw the following points:
+        var mysteryPoints = [[50, 50], [50, 100], [25, 120], 
+        [100, 50], [70, 90], [100, 90], [70, 120]];
+        drawPoints(mysteryPoints);
+        Hint: You can use points[0][0] to get the first x-coordinate
+        and points[0][1] to get the first y-coordinate. 
+     -->
+     
+    <canvas id="canvas" width="200" height="200"></canvas>
+
+    <script>
+        var canvas = document.getElementById("canvas");
+        var ctx = canvas.getContext("2d");
+
+        var drawPoints = function (points) {
+            var x = points[0][0];
+            var y = points[0][1];
+
+            ctx.beginPath();
+            ctx.moveTo(x, y);
+            for (var i = 1; i < points.length; i++) {
+                x = points[i][0];
+                y = points[i][1];
+                ctx.lineTo(x, y);
+            }
+            ctx.stroke();
+        }
+
+        // drawing a stickman
+        ctx.strokeStyle = "Gray";
+        ctx.lineWidth = 3;
+
+        // var points = [[50, 50], [50, 100], [100, 100], [100, 50], [50, 50]];
+        // drawPoints(points);
+
+        // testing the function with different points:
+        var mysteryPoints = [[50, 50], [50, 100], [25, 120], [100, 50], [70, 90], [100, 90], [70, 120]];
+        drawPoints(mysteryPoints);
+
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<hmtl>
+    <head>
+        <meta charset="utf-8">
+        <title>Cars</title>
+    </head>
+    <body>
+        <!-- Creating objects using constructors 
+            note: constructor is a function that creates objects and
+            gives them a set of built-in properties and methods. 
+
+            to call a constructor:
+                var car = new Car(100, 200)  
+    
+            p.s.: it's convenient do differenciate constructors from ordinary functions
+            starting its name with capital letters.
+         -->
+
+        <!-- Calling jQuery -->
+        <script src="https://code.jquery.com/jquery-2.1.0.js"></script>
+        
+        <script>
+            // creating a constructor
+            var Car = function (x, y) {
+                this.x = x;
+                this.y = y;
+            };
+
+            // calling the Car constructor
+            var tesla = new Car(20,20);
+            var nissan = new Car(100,200);
+            // tesla; // type this into console to see the object
+
+            var drawCar = function (car) {
+                var carHtml = '<img src="http://nostarch.com/images/car.png">';
+
+                var carElement = $(carHtml);
+
+                carElement.css({
+                    position: "absolute",
+                    left: car.x,
+                    top:car.y,
+                });
+
+                $("body").append(carElement);
+
+            };
+
+            // drawing cars
+            drawCar(tesla);
+            drawCar(nissan);
+
+
+            /*  Adding methods with prototypes
+                syntax: Car.prototype.draw = function () {
+                    // body of the method
+                }
+                
+                Let's add a draw method to the Car constructor on file cars2.html
+            */
+        </script>
+    </body>
+</hmtl>

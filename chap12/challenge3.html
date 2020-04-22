@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<hmtl>
+
+    <head>
+        <meta charset="utf-8">
+        <title>Cars</title>
+        <img id="track" src="track.png" width="1000px" height="300px">
+        <img id="finishLine" src="finish.jpg" width="60px" height="300px">
+        
+    </head>
+
+    <body>
+        <!-- Challenge 3
+            Modify the moveLeft , moveRight , moveUp , and moveDown methods
+            so they take a single distance argument, the number of
+            pixels to move, instead of always moving 5 pixels. For
+            example, to move the nissan car 10 pixels to the right, you
+            would call nissan.moveRight(10).
+            Now, use setInterval to move the two cars ( nissan and
+            tesla ) to the right every 30 milliseconds by a different
+            random distance between 0 and 5. You should see the two
+            cars animate across the screen, jumping along at varying
+            speeds. Can you guess which car will make it to the edge
+            of the window first?
+         -->
+
+        <!-- Calling jQuery -->
+        <script src="https://code.jquery.com/jquery-2.1.0.js"></script>
+
+        <script>
+            var Car = function (x, y) {
+                this.x = x;
+                this.y = y;
+                this.draw();
+                this.speed = 5;
+            };
+
+            Car.prototype.draw = function () {
+                var carHtml = '<img src="http://nostarch.com/images/car.png">';
+                this.carElement = $(carHtml);
+                this.carElement.css({
+                    position: "absolute",
+                    left: this.x,
+                    top: this.y
+                });
+                $("body").append(this.carElement);
+            };
+
+            // move methods
+            Car.prototype.moveRight = function (distance) {
+                this.x += distance;
+
+                this.carElement.css({
+                    left: this.x,
+                    top: this.y
+                });
+            };
+            Car.prototype.moveLeft = function (distance) {
+                this.x -= distance;
+                this.carElement.css({
+                    left: this.x,
+                    top: this.y
+                });
+            };
+            Car.prototype.moveUp = function (distance) {
+                this.y -= distance;
+                this.carElement.css({
+                    left: this.x,
+                    top: this.y
+                });
+            };
+            Car.prototype.moveDown = function (distance) {
+                this.y += distance;
+                this.carElement.css({
+                    left: this.x,
+                    top: this.y
+                });
+            };
+
+            // adding cars
+            var tesla = new Car(20, 20);
+            var nissan = new Car(20, 140);
+
+            // setting position of finish line
+            $("#finishLine").css({
+                position: "absolute",
+                left: 830
+            });
+
+            // setting position of track
+            $("#track").css({
+                position: "absolute",
+                left:0,
+                top:10
+            })
+
+            var move = function () {
+                tesla.moveRight(Math.random() * 5);
+                nissan.moveRight(Math.random() * 5);
+
+                if (tesla.x >= 800) {
+                    clearInterval(intervalID);
+                    alert("Top car won!");
+                } else if (nissan.x >= 800) {
+                    clearInterval(intervalID);
+                    alert("Bottom car won!");
+                }
+            }
+
+            // not conventional to declare a variable after it's used on code, but works. :)
+            var intervalID = setInterval(move, 30);
+
+
+        </script>
+    </body>
+</hmtl>

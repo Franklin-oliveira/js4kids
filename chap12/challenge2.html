@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<hmtl>
+
+    <head>
+        <meta charset="utf-8">
+        <title>Cars</title>
+    </head>
+
+    <body>
+        <!-- Challenge 2
+            Modify the Car constructor to add a new speed property
+            with a value of 5 to the constructed objects. Then use
+            this property instead of the value 5 inside the movement
+            methods.
+            Now try out different values for speed to make the cars
+            move faster or slower.
+         -->
+
+        <!-- Calling jQuery -->
+        <script src="https://code.jquery.com/jquery-2.1.0.js"></script>
+
+        <script>
+            var Car = function (x, y) {
+                this.x = x;
+                this.y = y;
+                this.draw();
+                this.speed = 5;
+            };
+
+            Car.prototype.draw = function () {
+                var carHtml = '<img src="http://nostarch.com/images/car.png">';
+                this.carElement = $(carHtml);
+                this.carElement.css({
+                    position: "absolute",
+                    left: this.x,
+                    top: this.y
+                });
+                $("body").append(this.carElement);
+            };
+
+            // move methods
+            Car.prototype.moveRight = function () {
+                this.x += this.speed;
+
+                this.carElement.css({
+                    left: this.x,
+                    top: this.y
+                });
+            };
+            Car.prototype.moveLeft = function () {
+                this.x -= this.speed;
+                this.carElement.css({
+                    left: this.x,
+                    top: this.y
+                });
+            };
+            Car.prototype.moveUp = function () {
+                this.y -= this.speed;
+                this.carElement.css({
+                    left: this.x,
+                    top: this.y
+                });
+            };
+            Car.prototype.moveDown = function () {
+                this.y += this.speed;
+                this.carElement.css({
+                    left: this.x,
+                    top: this.y
+                });
+            };
+
+            var tesla = new Car(20, 20);
+            var nissan = new Car(20, 200);
+
+        </script>
+    </body>
+</hmtl>

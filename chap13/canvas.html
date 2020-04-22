@@ -18,7 +18,7 @@
         // for (var i = 0; i < 8; i++) {
         //     ctx.fillRect(i*10,i*10,10,10);
         // }
-        
+
         // ctx.fillStyle = "Red";  // changing color
         // ctx.fillRect(0,0,100,100);
 
@@ -36,17 +36,66 @@
         // ctx.strokeStyle = "DeepPink";
         // ctx.lineWidth = 4;
         // ctx.strokeRect(10,10,100,20);
-        
-        // drawing lines or paths
-        ctx.strokeStyle = "Turquoise";
-        ctx.lineWidth = 4;
-        ctx.beginPath();
-        ctx.moveTo(10,10);
-        ctx.lineTo(60,60);
-        ctx.moveTo(60,10);
-        ctx.lineTo(10,60);
-        ctx.stroke();
 
+        // drawing lines or paths
+        // ctx.strokeStyle = "Turquoise";
+        // ctx.lineWidth = 4;
+        // ctx.beginPath();
+        // ctx.moveTo(10,10);
+        // ctx.lineTo(60,60);
+        // ctx.moveTo(60,10);
+        // ctx.lineTo(10,60);
+        // ctx.stroke();
+
+        // filling paths with colors
+        // ctx.fillStyle = "SkyBlue";
+        // ctx.beginPath();
+        // ctx.moveTo(100, 100);
+        // ctx.lineTo(100, 60);
+        // ctx.lineTo(130, 30);
+        // ctx.lineTo(160, 60);
+        // ctx.lineTo(160, 100);
+        // ctx.lineTo(100, 100);
+        // ctx.fill();
+
+
+        // drawing arcs and circles
+        // ctx.lineWidth = 2;
+        // ctx.strokeStyle = "Green";
+
+        // ctx.beginPath();
+        // ctx.arc(50, 50, 20, 0, Math.PI / 2, false);
+        // ctx.stroke();
+
+        // ctx.beginPath();
+        // ctx.arc(100, 50, 20, 0, Math.PI, false);
+        // ctx.stroke();
+
+        // ctx.beginPath();
+        // ctx.arc(150, 50, 20, 0, Math.PI * 2, false);
+        // ctx.stroke();
+
+
+        // drawing only circles
+        var circle = function (x, y, radius) {
+            ctx.beginPath();
+            ctx.arc(x, y, radius, 0, Math.PI * 2, false);
+            ctx.stroke();
+        };
+
+        ctx.lineWidth = 4;
+        ctx.strokeStyle = "Red";
+        circle(100, 100, 10);
+        ctx.strokeStyle = "Orange";
+        circle(100, 100, 20);
+        ctx.strokeStyle = "Yellow";
+        circle(100, 100, 30);
+        ctx.strokeStyle = "Green";
+        circle(100, 100, 40);
+        ctx.strokeStyle = "Blue";
+        circle(100, 100, 50);
+        ctx.strokeStyle = "Purple";
+        circle(100, 100, 60);
     </script>
 </body>
 

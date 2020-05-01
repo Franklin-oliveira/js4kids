@@ -14,20 +14,22 @@
         var ctx = canvas.getContext("2d");
 
         // ball constructor (Obj)
-        var Ball = function () {
-            this.x = 100;
-            this.y = 100;
+        var Ball = function (x, y) {
+            this.x = x;
+            this.y = y;
             this.xSpeed = -2;
             this.ySpeed = 3;
         };
 
         // function to draw the ball
-        var circle = function (x, y, radius, fillCircle) {
+        var circle = function (x, y, radius, fillCircle, color="Black") {
             ctx.beginPath();
             ctx.arc(x, y, radius, 0, Math.PI * 2, false);
             if (fillCircle) {
+                ctx.fillStyle = color;
                 ctx.fill();
             } else {
+                ctx.strokeStyle = color;
                 ctx.stroke();
             }
         };
@@ -54,7 +56,8 @@
         };
 
         // animating the ball
-        var ball = new Ball();
+        var ball = new Ball(100, 100);
+        var ball2 = new Ball(50, 23, color='Blue');
 
         setInterval( function () {
             ctx.clearRect(0, 0, 200, 200);
@@ -62,6 +65,11 @@
             ball.draw();
             ball.move();
             ball.checkCollision();
+
+            ball2.draw();
+            ball2.move();
+            ball2.checkCollision();
+
 
             ctx.strokeRect(0, 0, 200, 200);
         }, 30);

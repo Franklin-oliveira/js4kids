@@ -31,27 +31,31 @@
         }
 
         // ball constructor (Obj)
+        var colors = ["Red", "Orange", "Yellow", "Green", "Blue", "Purple"];
         var Ball = function () {
             this.x = 100;
             this.y = 100;
             this.xSpeed = randomNumber(-5, 5);
             this.ySpeed = randomNumber(-5, 5);
+            this.color = colors[Math.floor(Math.random() * colors.length)];
         };
 
         // function to draw the ball
-        var circle = function (x, y, radius, fillCircle) {
+        var circle = function (x, y, radius, fillCircle, color="Black") {
             ctx.beginPath();
             ctx.arc(x, y, radius, 0, Math.PI * 2, false);
             if (fillCircle) {
+                ctx.fillStyle = color;
                 ctx.fill();
             } else {
+                ctx.strokeStyle = color;
                 ctx.stroke();
             }
         };
 
         // adding draw prototype to the ball constructor
         Ball.prototype.draw = function () {
-            circle(this.x, this.y, 3, true);
+            circle(this.x, this.y, 3, true, this.color);
         };
 
         // method to move the ball
@@ -74,7 +78,7 @@
         // var ball = new Ball();
 
         // array of balls
-        var balls = [];
+        var balls = []; 
 
         for (var i = 0; i < 10; i++) {
             balls[i] = new Ball();     
@@ -94,8 +98,6 @@
 
             ctx.strokeRect(0, 0, width, height);
         }, 30);
-
-
 
     </script>
 </body>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset=utf-8>
+    <title>A Bouncing Ball</title>
+</head>
+
+<body>
+    <canvas id="canvas" width="200px" height="200px"></canvas>
+
+    <script>
+        var canvas = document.getElementById("canvas");
+        var ctx = canvas.getContext("2d");
+
+        // ball constructor (Obj)
+        var Ball = function () {
+            this.x = 100;
+            this.y = 100;
+            this.xSpeed = -2;
+            this.ySpeed = 3;
+        };
+
+        // function to draw the ball
+        var circle = function (x, y, radius, fillCircle) {
+            ctx.beginPath();
+            ctx.arc(x, y, radius, 0, Math.PI * 2, false);
+            if (fillCircle) {
+                ctx.fill();
+            } else {
+                ctx.stroke();
+            }
+        };
+
+        // adding prototype to the ball constructor
+        Ball.prototype.draw = function () {
+            circle(this.x, this.y, 3, true);
+        }
+
+    </script>
+</body>
+
+</html>

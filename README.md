@@ -134,6 +134,7 @@ nvm ls-remote
 
 This way, you can choose your desired version and install it in case you don't have it yet on your machine. :)
 
+------
 On the official [NVM GitHub Repo](https://github.com/nvm-sh/nvm) there are lots of other useful commands and usage examples.
 
 ------

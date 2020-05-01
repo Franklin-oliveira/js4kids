@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset=utf-8>
+    <title>A Bouncing Ball</title>
+</head>
+
+<body>
+    <canvas id="canvas" width="400px" height="400px"></canvas>
+
+    <script>
+        var canvas = document.getElementById("canvas");
+        var ctx = canvas.getContext("2d");
+
+        var width = canvas.width;
+        var height = canvas.height;
+
+        // ball constructor (Obj)
+        var Ball = function () {
+            this.x = 100;
+            this.y = 100;
+            this.xSpeed = -2;
+            this.ySpeed = 3;
+        };
+
+        // function to draw the ball
+        var circle = function (x, y, radius, fillCircle) {
+            ctx.beginPath();
+            ctx.arc(x, y, radius, 0, Math.PI * 2, false);
+            if (fillCircle) {
+                ctx.fill();
+            } else {
+                ctx.stroke();
+            }
+        };
+
+        // adding draw prototype to the ball constructor
+        Ball.prototype.draw = function () {
+            circle(this.x, this.y, 3, true);
+        };
+
+        // method to move the ball
+        Ball.prototype.move = function () {
+            this.x += this.xSpeed;
+            this.y += this.ySpeed;
+        }
+
+        // check if the ball hit the wall
+        Ball.prototype.checkCollision = function () {
+            if (this.x < 0 || this.x > width) {
+                this.xSpeed = -this.xSpeed;
+            }
+            if (this.y < 0 || this.y > height) {
+                this.ySpeed = -this.ySpeed;
+            }
+        };
+
+        // animating the ball
+        var ball = new Ball();
+
+        setInterval(function () {
+            ctx.clearRect(0, 0, width, height);
+
+            ball.draw();
+            ball.move();
+            ball.checkCollision();
+
+            ctx.strokeRect(0, 0, width, height);
+        }, 30);
+
+
+
+    </script>
+</body>
+
+</html>

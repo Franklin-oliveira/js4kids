@@ -16,12 +16,27 @@
         var width = canvas.width;
         var height = canvas.height;
 
+        
+        // indicator variable (1 for positive, -1 for negative) - uniform distribution
+        var positiveOrNegative = function () {
+            if (math.Random() < 0.5) {
+                return -1;
+            } else {
+                return 1;
+            }
+        };
+
+        // draw a random number in a certain range
+        var randomNumber = function (inf, sup) {
+            return Math.floor(Math.random() * (sup - inf + 1) + inf);
+        }
+
         // ball constructor (Obj)
         var Ball = function () {
             this.x = 100;
             this.y = 100;
-            this.xSpeed = -2;
-            this.ySpeed = 3;
+            this.xSpeed = randomNumber(-5, 5);
+            this.ySpeed = randomNumber(-5, 5);
         };
 
         // function to draw the ball

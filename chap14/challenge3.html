@@ -16,12 +16,26 @@
         var width = canvas.width;
         var height = canvas.height;
 
+        // indicator variable (1 for positive, -1 for negative) - uniform distribution
+        var positiveOrNegative = function () {
+            if (math.Random() < 0.5) {
+                return -1;
+            } else {
+                return 1;
+            }
+        };
+
+        // draw a random number in a certain range
+        var randomNumber = function (inf, sup) {
+            return Math.floor(Math.random() * (sup - inf + 1) + inf);
+        }
+
         // ball constructor (Obj)
         var Ball = function () {
             this.x = 100;
             this.y = 100;
-            this.xSpeed = -2;
-            this.ySpeed = 3;
+            this.xSpeed = randomNumber(-5, 5);
+            this.ySpeed = randomNumber(-5, 5);
         };
 
         // function to draw the ball
@@ -57,14 +71,26 @@
         };
 
         // animating the ball
-        var ball = new Ball();
+        // var ball = new Ball();
+
+        // array of balls
+        var balls = [];
+
+        for (var i = 0; i < 10; i++) {
+                balls[i] = new Ball();     
+        }
 
         setInterval(function () {
             ctx.clearRect(0, 0, width, height);
 
-            ball.draw();
-            ball.move();
-            ball.checkCollision();
+            for (var j = 0; j < 10; j++){
+                balls[j].draw();
+                balls[j].move();
+                balls[j].checkCollision();
+            }
+            // ball.draw();
+            // ball.move();
+            // ball.checkCollision();
 
             ctx.strokeRect(0, 0, width, height);
         }, 30);

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title></title>
+</head>
+
+<body>
+    <canvas id="canvas" width="400px" height="400px"></canvas>
+    <script src="https://code.jquery.com/jquery-2.1.0.js"></script>
+    <script>
+        var canvas = document.getElementById("canvas");
+        var ctx = canvas.getContext("2d");
+        var width = canvas.width;
+        var height = canvas.height;
+
+        // dividing the canvas into blocks
+        var blocksize = 10;
+        var widthInBlocks = width / blocksize;
+        var heightInBlocks = height / blocksize;
+
+        // initiate the score
+        var score = 0;
+
+        // draw the border
+        var drawBorder = function () {
+            ctx.fillStyle = "Gray";
+            ctx.fillRect(0, 0, width, blocksize);
+            ctx.fillRect(0, height - blocksize, width, blocksize);
+            ctx.fillRect(0, 0, blocksize, height);
+            ctx.fillRect(width - blocksize, 0, blocksize, height);
+        }
+
+        // draw score
+        var drawScore = function () {
+            ctx.textBaseline = "top";
+            ctx.textAlign = "left"
+            ctx.font = "20px Courier";
+            ctx.fillStyle = "Black";
+            ctx.fillText("Score:" + score, blocksize+3, blocksize+3);
+        }
+
+        // game over function
+        var gameOver = function () {
+            // clearInterval(intervalId);
+            ctx.font = "60px Courier";
+            ctx.fillStyle = "Black";
+            ctx.textAlign = "center";
+            ctx.textBaseline = "middle";
+            ctx.fillText("Game Over", width/2, height/2);
+        }
+
+        // drawing elements
+        drawBorder();
+        drawScore();
+        gameOver();
+
+
+
+    </script>
+</body>
+
+</html>

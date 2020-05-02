@@ -7,9 +7,16 @@
     <title></title>
 </head>
 
-<body>
-    <canvas id="canvas" width="500px" height="500px"></canvas>
+<body style="background-color:lightgray">
+    <h1 style="font-family:Calambria;text-align:center;">Snake Game</h1>
+
+    <h4 id="recorde" style="font-family:Calambria;font-size:20px;margin-left:10px;margin-bottom:5px;text-align:center;"
+        class="muted"></h4>
+
+    <canvas id="canvas" width="500px" height="500px"
+        style="background-color:white;margin-left:auto;margin-right:auto;display:block;"></canvas>
     <script src="https://code.jquery.com/jquery-2.1.0.js"></script>
+
     <script>
         var canvas = document.getElementById("canvas");
         var ctx = canvas.getContext("2d");
@@ -113,7 +120,16 @@
                     ctx.globalAlpha = 1;
                 }
 
-                this.segments[i].drawSquare("Darkblue");
+                // draw stripes on the snake 
+                if (stripped) {
+                    if (i % 3 === 0) {
+                        this.segments[i].drawSquare("Green");
+                    } else {
+                        this.segments[i].drawSquare("Yellow");
+                    }
+                } else {
+                    this.segments[i].drawSquare("Darkblue");
+                }
             }
         };
 
@@ -135,7 +151,14 @@
             }
 
             if (this.checkCollision(newHead)) {
+                // finishes the game
                 gameOver();
+
+                // updates recorde on cache
+                if (score >= recorde) {
+                    localStorage['recorde'] = score;
+                }
+
                 return;
             }
 
@@ -219,13 +242,21 @@
 
         // adding keyboard input to set directions
         var directions = {
+            // arrow keys
             37: "left",
             38: "up",
             39: "right",
-            40: "down"
+            40: "down",
+
+            // W, A, S, D
+            65: "left",
+            87: "up",
+            68: "right",
+            83: "down"
         };
 
-        var animationTime = 120;
+        var animationTime = 128;
+        var stripped = false;  // whether or not to draw stripes on the snake
 
         // game loop
         var stillPlaying = true;
@@ -238,11 +269,21 @@
             apple.draw();
             drawBorder();
 
+            // displays curent best score on screen
+            $("#recorde").text("Best score: " + Math.max(recorde, score));
+
             if (stillPlaying) {
                 setTimeout(gameLoop, animationTime);
             }
-
         };
+
+        // display instructions and asks if the player wants to clear current record
+        var recorde = localStorage['recorde']; // reads current record on cache
+        var clear_record = confirm("Controls:\n\t- movement: arrow keys or WASD.\n\nWould you like to clear the current record?\n");
+
+        if (recorde === undefined || clear_record) {
+            recorde = 0;
+        }
 
         // starting the game
         gameLoop();

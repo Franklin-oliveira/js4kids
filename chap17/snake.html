@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title></title>
+</head>
+
+<body>
+    <canvas id="canvas" width="400px" height="400px"></canvas>
+    <script src="https://code.jquery.com/jquery-2.1.0.js"></script>
+    <script>
+        var canvas = document.getElementById("canvas");
+        var ctx = canvas.getContext("2d");
+        var width = canvas.width;
+        var height = canvas.height;
+
+        // dividing the canvas into blocks
+        var blocksize = 10;
+        var widthInBlocks = width / blocksize;
+        var heightInBlocks = height / blocksize;
+
+        // initiate the score
+        var score = 0;
+
+        // draw the border
+        var drawBorder = function () {
+            ctx.fillStyle = "Gray";
+            ctx.fillRect(0, 0, width, blocksize);
+            ctx.fillRect(0, height - blocksize, width, blocksize);
+            ctx.fillRect(0, 0, blocksize, height);
+            ctx.fillRect(width - blocksize, 0, blocksize, height);
+        }
+
+        // draw score
+        var drawScore = function () {
+            ctx.textBaseline = "top";
+            ctx.textAlign = "left"
+            ctx.font = "20px Courier";
+            ctx.fillStyle = "Black";
+            ctx.fillText("Score:" + score, blocksize + 3, blocksize + 3);
+        }
+
+        // game over function
+        var gameOver = function () {
+            clearInterval(intervalId);
+            ctx.font = "60px Courier";
+            ctx.fillStyle = "Black";
+            ctx.textAlign = "center";
+            ctx.textBaseline = "middle";
+            ctx.fillText("Game Over", width / 2, height / 2);
+        }
+
+        /* Setting the grid */
+        // Block constructor
+        var Block = function (col, row) {
+            this.col = col;
+            this.row = row;
+        };
+
+        // drawsquare
+        Block.prototype.drawSquare = function (color) {
+            var x = this.col * blocksize;
+            var y = this.row * blocksize;
+            ctx.fillStyle = color;
+            ctx.fillRect(x, y, blocksize, blocksize);
+        };
+
+        // function to draw a circle
+        var circle = function (x, y, radius, fillCircle) {
+            ctx.beginPath();
+            ctx.arc(x, y, radius, 0, Math.PI * 2, false);
+            if (fillCircle) {
+                ctx.fill();
+            } else {
+                ctx.stroke();
+            }
+        };
+
+        // method to draw the apple
+        Block.prototype.drawCircle = function (color) {
+            var centerX = this.col * blocksize + blocksize / 2;
+            var centerY = this.row * blocksize + blocksize / 2;
+            ctx.fillStyle = color;
+            circle(centerX, centerY, blocksize / 2, true);
+        };
+
+        // method to check if two blocks are in the same position (to check the condition of the snake)
+        Block.prototype.equal = function (otherBlock) {
+            return this.col === otherBlock.col && this.row === otherBlock.row;
+        };
+
+        /* Creating the snake */
+        var Snake = function () {
+            this.segments = [
+                new Block(7, 5),
+                new Block(6, 5),
+                new Block(5, 5),
+            ];
+
+        this.direction = "right";
+        this.nextDirection = "right";
+        };
+
+        // drawing the snake
+        Snake.prototype.draw = function () {
+            for (var i = 0; i < this.segments.length; i++) {
+                if (i === 0){
+                    ctx.globalAlpha = 0.5; // lower opacity to snake's head
+                } else {
+                    ctx.globalAlpha = 1;
+                }
+
+                this.segments[i].drawSquare("Darkblue");
+            }
+        };
+
+        // moving the snake
+        Snake.prototype.move = function() {
+            var head = this.segments[0];
+            var newHead;
+        }
+
+
+
+        // var intervalId = setInterval(function () {
+        //     ctx.clearRect(0, 0, width, height);
+
+        //     // drawing elements
+        //     drawBorder();
+        //     drawScore();
+        // }, 100);
+
+
+
+    </script>
+</body>
+
+</html>

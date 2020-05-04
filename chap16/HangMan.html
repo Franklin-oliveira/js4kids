@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Hang Man Game</title>
+</head>
+
+<body>
+    <h1>Hang Man</h1>
+    <p>Try to guess the word...</p>
+    <canvas id="canvas" width="500px" height="500px"></canvas>
+
+    <!-- Loading jQuery -->
+    <script src="https://code.jquery.com/jquery-2.1.0.js"></script>
+
+    <!-- Main script -->
+    <script>
+        /*p.s.: To answer this challenge, first I need to do a refactoring of the whole code (write it all as 
+         functions or classes) */
+
+        console.log('Hang Man - v2.0');
+
+        // getting canvas element
+        var canvas = document.getElementById("canvas");
+        var ctx = canvas.getContext("2d");
+        var width = canvas.width;
+        var height = canvas.height;
+
+        // drawing the gallow
+        ctx.fillStyle = "Brown";
+        ctx.fillRect(0, 0, 8, 210);
+        ctx.fillRect(0, 0, 120, 8);
+        ctx.fillRect(120, 0, 8, 30);
+        ctx.fillRect(124 - 25, 30, 50, 8);
+
+        // function to draw the stickman
+        var drawHangman = function (wrongGuesses) {
+            // drawing a stickman
+            ctx.strokeStyle = "Gray";
+            ctx.lineWidth = 4;
+
+            ctx.beginPath();
+
+            if (wrongGuesses === 1) {
+                // head
+                ctx.strokeRect(114, 40, 20, 20);
+            } else if (wrongGuesses === 2) {
+                // body
+                ctx.moveTo(124, 60);
+                ctx.lineTo(124, 110);
+            } else if (wrongGuesses === 3) {
+                // left arm
+                ctx.moveTo(124, 80);
+                ctx.lineTo(104, 70);
+            } else if (wrongGuesses === 4) {
+                // right arm
+                ctx.moveTo(124, 80);
+                ctx.lineTo(144, 70);
+            } else if (wrongGuesses === 5) {
+                // left leg
+                ctx.moveTo(124, 110);
+                ctx.lineTo(104, 140);
+            } else if (wrongGuesses === 6) {
+                // right leg
+                ctx.moveTo(124, 110);
+                ctx.lineTo(144, 140);
+            }
+
+            ctx.stroke();
+        };
+
+        // function to draw underscores for each letter
+        var drawUnderscore = function (n) {
+            ctx.lineWidth = 4;
+            ctx.strokeStyle = "Black";
+            ctx.beginPath();
+
+            for (var i = 0; i < n; i++) {
+                ctx.moveTo((i * 30) + 30, 200);
+                ctx.lineTo((i * 30) + 50, 200);
+            }
+            ctx.stroke();
+        };
+
+        // draw guessed letters
+        var drawGuessedLetters = function (guess, index) {
+            ctx.font = "20px Calambria";
+            ctx.fillText(guess.toUpperCase(), (index * 30) + 32, 195);
+        };
+
+        // draw incorrect guesses
+        var drawIncorrectGuess = function (guess, index) {
+            ctx.font = "20px Calambria";
+            ctx.strokeStyle = "Gray";
+            ctx.lineWidth = 3;
+            ctx.fillText(guess.toUpperCase(), 380, (index * 20) + 37);
+            ctx.moveTo(380, (index * 20) + 30);
+            ctx.lineTo(400, (index * 20) + 30);
+            ctx.stroke();
+        };
+
+        // vocabulary bank
+        var words = [
+            "javascript",
+            "monkey",
+            "amazing",
+            "pancake"
+        ];
+
+        // selecting a random word
+        var word = words[Math.floor(Math.random() * words.length)];
+        // draw underscores
+        drawUnderscore(word.length);
+
+        // creating answer array
+        var answer = [];
+        for (var i = 0; i < word.length; i++) {
+            answer[i] = "_";
+        }
+
+        // initiating some parameters
+        var remainingLetters = word.length;
+        var remainingGuesses = 6;
+        var wrongGuesses = []; // counts the number of wrong guesses
+        var guesses = [];
+
+
+        /* Game Loop */
+        while (remainingLetters > 0 && remainingGuesses > 0) {
+
+            alert('remaining guesses: ' + remainingGuesses + '\n\t' + answer.join(" ") + '\n');  // displays current progress
+
+            // checks if the user still has remaining guesses
+            if (remainingGuesses === 0) {
+                alert('Sorry, you were out of guesses...');
+                break;
+            }
+
+            // collecting user's guess
+            var guess = prompt("Guess a letter, or click Cancel to stop playing.");
+            guess = guess.toLowerCase()[0]; // lowering case 
+
+            if (guess === null) {
+                break;    // user wants to quit the game
+            } else if (guess.length != 1) {
+                alert("Please enter a single letter.");
+            } else {
+                // update the game with the new guess
+                var guessCorrectly = false;
+                var alreadyGuessed = false;
+                for (var j = 0; j < word.length; j++) {
+                    if (word[j] === guess) {
+                        if (answer[j] === '_') {  // checks if that letter was already guessed
+                            answer[j] = guess;
+                            drawGuessedLetters(guess,j);
+                            remainingLetters--;
+                            guessCorrectly = true;  // user guessed correctly
+                        } else {
+                            alert('This letter was already chosen. Please try a different one...');
+                            alreadyGuessed = true;
+                        }
+                    }
+                }
+                
+                // check wrong guesses
+                for (var j = 0; j < word.length; j++) {
+                    if (guess === wrongGuesses[j]) {
+                        alert('This letter was already chosen. Please try a different one...');
+                        alreadyGuessed = true;
+                    }
+                }
+                // counts for wrong guesses
+                if (!guessCorrectly && !alreadyGuessed) {
+                    drawIncorrectGuess(guess,wrongGuesses.length); // wrongGuesses.length = number of wrong guesses
+                    remainingGuesses--;
+                    wrongGuesses.push(guess);
+                }
+
+                // drawing the hangman
+                drawHangman(wrongGuesses.length);
+            }
+        }
+
+        if (remainingGuesses === 0) {
+            alert("GAME OVER! The answer was " + word + ".");
+        } else {
+            alert("Good Job! The answer was " + word + ".");
+        }
+
+    </script>
+
+</body>
+
+</html>

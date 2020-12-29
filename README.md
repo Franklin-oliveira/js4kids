@@ -85,7 +85,7 @@ nvm install node   # this will install the latest version of NodeJS
 Personally, I recommend **installing the LTS (*Long Term Support*) version** by running
 
 ```shell
-nvm install node --lts   # Currently, the LTS version corresponds to 12.16.1
+nvm install --lts   # Currently, the LTS version corresponds to 12.16.1
 ```
 
 And voilà. `NodeJS` and `NPM` were successfully installed with this simple command. If you want to check, the output of `node --version` and `npm --version` both should look like the following:
@@ -108,18 +108,18 @@ node *path/to/script.js*   # just change the path to the one in your computer
 The `Node Version Manager` proves to be really useful specially if you're working on different projects and need to use different versions of `Node`. To **alternate between different versions**, just do 
 
 ```shell
-nvm use node --version   # just change --version to the one you want to use, e.g., 10.10.0
+nvm use --version   # just change --version to the one you want to use, e.g., 10.10.0
 ```
 
 For example, to **use the latest version** of `NodeJS`, it would be as simple as 
 
 ```shell
-nvm use node --latest
+nvm use --latest
 ```
 
 To **install a specific node version**, just run
 ```shell
-nvm install node --version  # just change --version to the one you want to use, e.g., 8.9.1
+nvm install --version  # just change --version to the one you want to use, e.g., 8.9.1
 ```
 
 To **list all installed versions in your system**:
